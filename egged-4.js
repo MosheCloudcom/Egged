@@ -1,0 +1,27 @@
+function callWebhook(url) {
+  // This function takes one argument:
+  //   - url: The URL of the webhook endpoint with parameters
+  console.log("Calling webhook with URL:", url);
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: '{}' // Empty body as you're sending data in the URL
+  })
+  .then(response => response.json())
+  .then(responseData => {
+    console.log("Webhook response:", responseData);
+  })
+  .catch(error => {
+    console.error("Error calling webhook:", error);
+  });
+}
+
+// Example Usage with your specific URL
+const webhookUrl = "https://hook.eu1.make.com/eqlcj79xiz1cf6z9csj2tb1mo7oestaw?id=2&name=moshe2";
+
+window.onclick = function() {
+  callWebhook(webhookUrl);
+};
